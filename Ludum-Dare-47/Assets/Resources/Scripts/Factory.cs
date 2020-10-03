@@ -123,4 +123,3 @@ public class Factory : MonoBehaviour
         return list;
     }
 }
-
