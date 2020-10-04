@@ -72,6 +72,7 @@ public class TrailDestroyer : MonoBehaviour
         else if (r == 3)
             Instance.destroyedTrail = Instance.rightVert;
         Instance.destroyedTrail.state = false;
+        Instance.destroyedTrail.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public static bool IsTrailDestroyed()
@@ -81,9 +82,10 @@ public class TrailDestroyer : MonoBehaviour
 
     public static void RestoreTrail()
     {
-        Instance.lastDestroyedIndex = Instance.lastDestroyedIndex;
+        Instance.lastDestroyedIndex = Instance.destroyedIndex;
 
         Instance.destroyedTrail.state = true;
+        Instance.destroyedTrail.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
 
         Instance.destroyedIndex = -1;
         Instance.destroyedTrail = null;
