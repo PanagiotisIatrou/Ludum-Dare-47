@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &103831264
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &140767771
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &264302368
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &313753782
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &338730836
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &548116694
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &596075479
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &602047183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &608441560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &649343967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,6 +1289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &695263956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &731009599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &749188189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,6 +1427,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
+--- !u!1 &786590920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786590922}
+  - component: {fileID: 786590921}
+  m_Layer: 0
+  m_Name: TrailDestroyer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &786590921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786590920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef0585464211d345be430c6de0131a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VertexHolder: {fileID: 1258530882}
+--- !u!4 &786590922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786590920}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &796679973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,6 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &833127369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,6 +1705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &851966702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &860027839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,6 +1880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &935587020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,6 +1926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &941633393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,6 +2007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1109575235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,6 +2083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1137809029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1177204621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,6 +2175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1258530881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,6 +2379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1324742617
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,6 +2425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1325821877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,6 +2554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1413565291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,6 +2600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1437755380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1517277841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,6 +2722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1527100994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,6 +2934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1586447383
 GameObject:
   m_ObjectHideFlags: 0
@@ -2906,6 +2980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1629198085
 GameObject:
   m_ObjectHideFlags: 0
@@ -3000,6 +3075,7 @@ GameObject:
   - component: {fileID: 1710079788}
   - component: {fileID: 1710079787}
   - component: {fileID: 1710079786}
+  - component: {fileID: 1710079789}
   m_Layer: 0
   m_Name: Train (1)
   m_TagString: Untagged
@@ -3085,6 +3161,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710079789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710079785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9e86b927827c47b57bf64f9951a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754506825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,6 +3218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1763117288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,6 +3264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1832531176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,6 +3310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1852707332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,6 +3438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1892008518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,6 +3484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1892211468
 GameObject:
   m_ObjectHideFlags: 0
@@ -3437,6 +3530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1901456491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,6 +3576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &1949550396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &2004648189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,6 +3751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &2058049451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3700,6 +3797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &2062413183
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +3843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &2069386511
 GameObject:
   m_ObjectHideFlags: 0
@@ -3790,6 +3889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &2081293454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3835,6 +3935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1
 --- !u!1 &2143698793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3880,3 +3981,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: []
   dirToNeighbours: 
+  state: 1

@@ -33,7 +33,11 @@ public class TrainPickUpDrop : MonoBehaviour
                     }
                 }
             }
-                
+
+            if (TrailDestroyer.IsTrailDestroyed())
+                TrailDestroyer.RestoreTrail();
+            TrailDestroyer.DestroyRandomTrail();
+
         }
         // Check if train is in any city
         //blue
