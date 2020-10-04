@@ -12,6 +12,7 @@ public class TrainMovement : MonoBehaviour
     private bool stopped = true;
     private float speed = 3f;
     private int inventory = -1;
+    public static float upgradespeed= 1f;
 
     private Boost Boost;
     private TrainPickUpDrop pickupdrop;
@@ -103,6 +104,11 @@ public class TrainMovement : MonoBehaviour
         }
     }
 
+    public static void UpgradeSpeed()
+    {
+        upgradespeed += 0.1f;
+    }
+
     private IEnumerator MoveToVertexIE(Vertex newVertex)
     {
         isMoving = true;
@@ -113,7 +119,7 @@ public class TrainMovement : MonoBehaviour
         while ((Vector2)transform.position != newPos)
         {
             float boost = Boost.BOOST() ? 2f : 1;
-            transform.position += (Vector3)offset * speed * boost * Time.deltaTime;
+            transform.position += (Vector3)offset * speed * boost * upgradespeed * Time.deltaTime;
             prevDist = dist;
             dist = Vector2.Distance(transform.position, newPos);
             if (dist - prevDist > 0f && prevDist != -1)

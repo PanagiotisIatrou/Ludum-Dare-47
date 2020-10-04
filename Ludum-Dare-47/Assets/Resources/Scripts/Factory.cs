@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Factory : MonoBehaviour
 {
     private const int max_items = 4;
-    private float max_time = 5;
+    private static float max_time = 5;
     private float time = 0;
     private static Queue<GameObject> items = new Queue<GameObject>(max_items);
     private static Queue<int> num_items = new Queue<int>(max_items);
@@ -30,8 +30,8 @@ public class Factory : MonoBehaviour
             Debug.LogWarning("GameOver");
         }
 
+        Debug.Log(time + " " + max_time);
         time += Time.deltaTime;
-
         if (time >= max_time)
         {
             time = 0;
@@ -39,9 +39,14 @@ public class Factory : MonoBehaviour
         }
 
     }
+    public static void TimeRate()
+    {
+        if(max_time >1.5f)
+            max_time -= 0.1f;
+    }
     private void AddItem()
     {
-        int temp = Random.Range(0, 3);
+        int temp = Random.Range(0, 4);
         GameObject temp2;
         if (temp == 0)
         {

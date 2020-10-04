@@ -33,7 +33,6 @@ public class Boost : MonoBehaviour
             boost = false;
             flage = true;
         }
-        Debug.Log(boost);
     }
 
     public static bool BOOST()

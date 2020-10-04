@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TrainPickUpDrop : MonoBehaviour
 {
-    private int sizeofcargo = 2;
+    private int sizeofcargo ;
     List<int> inventory;
     private void Start()
     {
+        sizeofcargo = 1;
         inventory = new List<int>(sizeofcargo);
     }
     private void Update()
@@ -22,22 +24,17 @@ public class TrainPickUpDrop : MonoBehaviour
         // Check if train is in factory
         if ((Vector2)transform.position == Vector2.zero)
         {
-            if (!Factory.isEmpty())
-            {
-                int temp = sizeofcargo - inventory.Count ;
-                if (temp > 0)
-                {
-                    for (int i = 0; i < temp; i++)
-                    {
-                        inventory.Add(Factory.Remove(1)[0]);
-                    }
-                }
-            }
 
             if (TrailDestroyer.IsTrailDestroyed())
                 TrailDestroyer.RestoreTrail();
             TrailDestroyer.DestroyRandomTrail();
-
+            int temp = sizeofcargo - inventory.Count;
+            for (int i = 0; i < temp; i++)
+            {
+                if (Factory.isEmpty())
+                    break;
+                inventory.Add(Factory.Remove(1)[0]);
+            }
         }
         // Check if train is in any city
         //blue
@@ -65,7 +62,21 @@ public class TrainPickUpDrop : MonoBehaviour
 
     }
 
+    private bool flage = false;
+
     private void remove(int what)
+    {
+        listremove(what);
+        if (flage)
+        {
+            sizeofcargo++;
+            Factory.TimeRate();
+            TrainMovement.UpgradeSpeed();
+        }
+        flage = false;
+    }
+
+    private void listremove(int what)
     {
         for (int i = 0; i < inventory.Count; i++)
         {
@@ -73,10 +84,11 @@ public class TrainPickUpDrop : MonoBehaviour
             {
                 ScoreMoneyManager.AddScore(1);
                 inventory.RemoveAt(i);
-                remove(what);
+                listremove(what);
+                flage = true;
                 break;
             }
         }
-        
+
     }
 }
