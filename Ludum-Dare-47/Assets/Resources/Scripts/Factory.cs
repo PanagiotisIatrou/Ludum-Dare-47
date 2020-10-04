@@ -9,8 +9,8 @@ public class Factory : MonoBehaviour
     private const int max_items = 4;
     private float max_time = 10;
     private float time = 0;
-    private Queue<GameObject> items = new Queue<GameObject>(max_items);
-    private Queue<int> num_items = new Queue<int>(max_items);
+    private static Queue<GameObject> items = new Queue<GameObject>(max_items);
+    private static Queue<int> num_items = new Queue<int>(max_items);
     public GameObject blue;
     public GameObject red;
     public GameObject green;
@@ -92,7 +92,7 @@ public class Factory : MonoBehaviour
         
     }
     
-    public List<int> Remove(int size)
+    public static List<int> Remove(int size)
     {
         if (items.Count == 0)
         {
