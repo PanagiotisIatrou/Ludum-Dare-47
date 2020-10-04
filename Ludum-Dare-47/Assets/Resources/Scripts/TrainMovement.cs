@@ -11,6 +11,7 @@ public class TrainMovement : MonoBehaviour
     private bool isMoving = false;
     private bool stopped = true;
     private float speed = 3f;
+    private int inventory = -1;
 
     private void Start()
     {
@@ -114,6 +115,13 @@ public class TrainMovement : MonoBehaviour
         transform.position = newPos;
         currentVertex = newVertex;
         isMoving = false;
+
+        // Check if train is in factory
+        if ((Vector2)transform.position == Vector2.zero)
+        {
+            if (!Factory.isEmpty())
+                inventory = Factory.Remove(1)[0];
+        }
     }
 
     private void Update()
