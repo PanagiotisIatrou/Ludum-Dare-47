@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Factory : MonoBehaviour
 {
     private const int max_items = 4;
-    private float max_time = 10;
+    private float max_time = 5;
     private float time = 0;
     private static Queue<GameObject> items = new Queue<GameObject>(max_items);
     private static Queue<int> num_items = new Queue<int>(max_items);
@@ -16,7 +16,7 @@ public class Factory : MonoBehaviour
     public GameObject green;
     public GameObject yellow;
 
-    private void Start()
+    private void Awake()
     {
         AddItem();
     }
@@ -24,12 +24,6 @@ public class Factory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            List<int> list= Remove(1);
-            ScoreMoneyManager.AddMoney(2);
-            ScoreMoneyManager.AddScore(1);
-        }
 
         if (items.Count > max_items)
         {
@@ -69,7 +63,6 @@ public class Factory : MonoBehaviour
             num_items.Enqueue(3);
             temp2 = yellow;
         }
-        Debug.Log(items.Count);
         GameObject item = Instantiate(temp2, transform.position, Quaternion.identity);
         if (items.Count == 0)
         {

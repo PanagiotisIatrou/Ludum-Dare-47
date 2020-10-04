@@ -13,8 +13,13 @@ public class TrainMovement : MonoBehaviour
     private float speed = 3f;
     private int inventory = -1;
 
+    private TrainPickUpDrop pickupdrop;
+    
     private void Start()
     {
+        pickupdrop = GetComponent<TrainPickUpDrop>();
+
+
         currentVertex = VertexHolder.GetChild(0).GetComponent<Vertex>();
 
         // Set up vertex neighbours
@@ -116,12 +121,7 @@ public class TrainMovement : MonoBehaviour
         currentVertex = newVertex;
         isMoving = false;
 
-        // Check if train is in factory
-        if ((Vector2)transform.position == Vector2.zero)
-        {
-            if (!Factory.isEmpty())
-                inventory = Factory.Remove(1)[0];
-        }
+        pickupdrop.PickUpDrop();
     }
 
     private void Update()
