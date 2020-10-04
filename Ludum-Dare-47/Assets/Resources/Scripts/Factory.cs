@@ -132,7 +132,7 @@ public class Factory : MonoBehaviour
     public static bool isEmpty()
     {
         if (items.Count != 0)
-            return true;
-        return false;
+            return false;
+        return true;
     }
 }
