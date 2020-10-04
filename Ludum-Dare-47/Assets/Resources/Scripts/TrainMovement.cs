@@ -13,11 +13,13 @@ public class TrainMovement : MonoBehaviour
     private float speed = 3f;
     private int inventory = -1;
 
+    private Boost Boost;
     private TrainPickUpDrop pickupdrop;
     
     private void Start()
     {
         pickupdrop = GetComponent<TrainPickUpDrop>();
+        Boost = GetComponent<Boost>();
 
 
         currentVertex = VertexHolder.GetChild(0).GetComponent<Vertex>();
@@ -110,7 +112,8 @@ public class TrainMovement : MonoBehaviour
         float prevDist;
         while ((Vector2)transform.position != newPos)
         {
-            transform.position += (Vector3)offset * speed * Time.deltaTime;
+            float boost = Boost.BOOST() ? 2f : 1;
+            transform.position += (Vector3)offset * speed * boost * Time.deltaTime;
             prevDist = dist;
             dist = Vector2.Distance(transform.position, newPos);
             if (dist - prevDist > 0f && prevDist != -1)

@@ -25,7 +25,7 @@ public class TrainPickUpDrop : MonoBehaviour
             if (!Factory.isEmpty())
             {
                 int temp = sizeofcargo - inventory.Count ;
-                if (temp >= 0)
+                if (temp > 0)
                 {
                     for (int i = 0; i < temp; i++)
                     {
