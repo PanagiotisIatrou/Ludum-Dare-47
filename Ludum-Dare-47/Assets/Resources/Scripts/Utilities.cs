@@ -17,4 +17,5 @@ public class Utilities
         else
             return Vector2.zero;
     }
+
 }
