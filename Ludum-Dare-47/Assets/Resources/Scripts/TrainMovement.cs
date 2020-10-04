@@ -61,6 +61,11 @@ public class TrainMovement : MonoBehaviour
         }
     }
 
+    public static void UpgradeSpeed()
+    {
+        upgradespeed += 0.1f;
+    }
+
     private void GoToDir(Direction dir)
     {
         bool found = false;
@@ -102,11 +107,6 @@ public class TrainMovement : MonoBehaviour
                     stopped = true;
             }
         }
-    }
-
-    public static void UpgradeSpeed()
-    {
-        upgradespeed += 0.1f;
     }
 
     private IEnumerator MoveToVertexIE(Vertex newVertex)
