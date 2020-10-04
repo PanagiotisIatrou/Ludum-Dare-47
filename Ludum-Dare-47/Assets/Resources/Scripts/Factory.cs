@@ -128,4 +128,11 @@ public class Factory : MonoBehaviour
         items = temp_queue;
         return list;
     }
+    
+    public static bool isEmpty()
+    {
+        if (items.Count != 0)
+            return true;
+        return false;
+    }
 }
