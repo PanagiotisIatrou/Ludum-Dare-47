@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class Factory : MonoBehaviour
 {
     private const int max_items = 4;
-    private int max_time = 2000;
-    private int time = 0;
+    private float max_time = 10;
+    private float time = 0;
     private Queue<GameObject> items = new Queue<GameObject>(max_items);
     private Queue<int> num_items = new Queue<int>(max_items);
     public GameObject blue;
@@ -27,6 +27,8 @@ public class Factory : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             List<int> list= Remove(1);
+            ScoreMoneyManager.AddMoney(2);
+            ScoreMoneyManager.AddScore(1);
         }
 
         if (items.Count > max_items)
@@ -34,7 +36,7 @@ public class Factory : MonoBehaviour
             Debug.LogWarning("GameOver");
         }
 
-        time++;
+        time += Time.deltaTime;
 
         if (time >= max_time)
         {
@@ -92,6 +94,10 @@ public class Factory : MonoBehaviour
     
     public List<int> Remove(int size)
     {
+        if (items.Count == 0)
+        {
+            return new List<int>(0);
+        }
         List<int> list = new List<int>(size);
         for (int i = 0; i< size; i++)
         {
