@@ -5,25 +5,20 @@ using UnityEngine;
 public class TrainMovement : MonoBehaviour
 {
     public Transform VertexHolder;
+    private Wagon wagon;
     private Direction currentDir = Direction.NONE;
     private Direction nextDir = Direction.NONE;
-    private Vertex currentVertex;
-    private bool isMoving = false;
     private bool stopped = true;
-    private float speed = 3f;
-    private int inventory = -1;
-    public static float upgradespeed= 1f;
 
     private Boost Boost;
     private TrainPickUpDrop pickupdrop;
     
     private void Start()
     {
+        wagon = GetComponent<Wagon>();
         pickupdrop = GetComponent<TrainPickUpDrop>();
         Boost = GetComponent<Boost>();
-
-
-        currentVertex = VertexHolder.GetChild(0).GetComponent<Vertex>();
+        wagon.currentVertex = VertexHolder.GetChild(0).GetComponent<Vertex>();
 
         // Set up vertex neighbours
         for (int i = 0; i < VertexHolder.childCount; i++)
@@ -61,23 +56,18 @@ public class TrainMovement : MonoBehaviour
         }
     }
 
-    public static void UpgradeSpeed()
-    {
-        upgradespeed += 0.1f;
-    }
-
     private void GoToDir(Direction dir)
     {
         bool found = false;
         // Search for nextDir
-        for (int i = 0; i < currentVertex.neighbours.Count; i++)
+        for (int i = 0; i < wagon.currentVertex.neighbours.Count; i++)
         {
-            if (nextDir == currentVertex.dirToNeighbours[i])
+            if (nextDir == wagon.currentVertex.dirToNeighbours[i])
             {
                 found = true;
                 stopped = false;
-                Vertex newVertex = currentVertex.neighbours[i];
-                StartCoroutine(MoveToVertexIE(newVertex));
+                Vertex newVertex = wagon.currentVertex.neighbours[i];
+                wagon.MoveToVertex(newVertex);
 
                 currentDir = nextDir;
                 nextDir = Direction.NONE;
@@ -87,14 +77,14 @@ public class TrainMovement : MonoBehaviour
         if (!found)
         {
             bool found2 = false;
-            for (int i = 0; i < currentVertex.neighbours.Count; i++)
+            for (int i = 0; i < wagon.currentVertex.neighbours.Count; i++)
             {
-                if (dir == currentVertex.dirToNeighbours[i])
+                if (dir == wagon.currentVertex.dirToNeighbours[i])
                 {
                     found2 = true;
                     stopped = false;
-                    Vertex newVertex = currentVertex.neighbours[i];
-                    StartCoroutine(MoveToVertexIE(newVertex));
+                    Vertex newVertex = wagon.currentVertex.neighbours[i];
+                    wagon.MoveToVertex(newVertex);
                     break;
                 }
             }
@@ -107,30 +97,6 @@ public class TrainMovement : MonoBehaviour
                     stopped = true;
             }
         }
-    }
-
-    private IEnumerator MoveToVertexIE(Vertex newVertex)
-    {
-        isMoving = true;
-        Vector2 newPos = newVertex.transform.position;
-        Vector2 offset = newPos - (Vector2)transform.position;
-        float dist = -1;
-        float prevDist;
-        while ((Vector2)transform.position != newPos)
-        {
-            float boost = Boost.BOOST() ? 2f : 1;
-            transform.position += (Vector3)offset * speed * boost * upgradespeed * Time.deltaTime;
-            prevDist = dist;
-            dist = Vector2.Distance(transform.position, newPos);
-            if (dist - prevDist > 0f && prevDist != -1)
-                transform.position = newPos;
-            yield return null;
-        }
-        transform.position = newPos;
-        currentVertex = newVertex;
-        isMoving = false;
-
-        pickupdrop.PickUpDrop();
     }
 
     private void Update()
@@ -167,7 +133,7 @@ public class TrainMovement : MonoBehaviour
         if (Utilities.DirToVec2(currentDir) + Utilities.DirToVec2(nextDir) == Vector2.zero)
             nextDir = Direction.NONE;
 
-        if (isMoving)
+        if (wagon.isMoving)
             return;
 
         if (currentDir != Direction.NONE)

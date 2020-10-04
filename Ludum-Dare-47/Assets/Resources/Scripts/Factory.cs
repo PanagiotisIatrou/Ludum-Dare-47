@@ -21,7 +21,6 @@ public class Factory : MonoBehaviour
         AddItem();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -30,7 +29,6 @@ public class Factory : MonoBehaviour
             Debug.LogWarning("GameOver");
         }
 
-        Debug.Log(time + " " + max_time);
         time += Time.deltaTime;
         if (time >= max_time)
         {
