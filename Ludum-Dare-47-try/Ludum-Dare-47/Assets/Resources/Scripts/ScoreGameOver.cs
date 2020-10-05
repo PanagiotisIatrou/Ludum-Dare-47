@@ -7,6 +7,7 @@ public class ScoreGameOver : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         scoreText.SetText("Score: " + ScoreMoneyManager.score);
     }
 }

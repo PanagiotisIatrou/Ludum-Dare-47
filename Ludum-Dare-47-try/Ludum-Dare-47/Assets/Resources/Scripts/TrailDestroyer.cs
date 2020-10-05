@@ -34,6 +34,7 @@ public class TrailDestroyer : MonoBehaviour
     private Vertex destroyedTrail = null;
 
     public bool Flage = true;
+    private bool gameOver = false;
 
     private int destroyedIndex = -1;
 
@@ -207,6 +208,10 @@ public class TrailDestroyer : MonoBehaviour
 
     public void GameOver(int i)
     {
+        if (gameOver)
+            return;
+        Time.timeScale = 0.5f;
+        gameOver = true;
         if (i == 0)
             Instance.explotionps.Play();
         else
