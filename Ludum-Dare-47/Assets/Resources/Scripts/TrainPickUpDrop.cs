@@ -23,10 +23,13 @@ public class TrainPickUpDrop : MonoBehaviour
         // Check if train is in factory
         if ((Vector2)transform.position == Vector2.zero)
         {
-
-            if (TrailDestroyer.IsTrailDestroyed())
-                TrailDestroyer.RestoreTrail();
-            TrailDestroyer.DestroyRandomTrail();
+            if (TrailDestroyer.Instance.Flage)
+            {
+                if (TrailDestroyer.IsTrailDestroyed())
+                    TrailDestroyer.RestoreTrail();
+                TrailDestroyer.DestroyRandomTrail();
+            }
+           
             int temp = sizeofcargo - inventory.Count;
             for (int i = 0; i < temp; i++)
             {
