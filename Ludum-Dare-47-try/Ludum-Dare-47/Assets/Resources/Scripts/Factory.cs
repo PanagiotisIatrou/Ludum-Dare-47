@@ -36,6 +36,9 @@ public class Factory : MonoBehaviour
     {
         flagewanring = false;
         AddItem();
+        AddItem();
+        AddItem();
+        AddItem();
     }
 
     void Update()
@@ -50,7 +53,7 @@ public class Factory : MonoBehaviour
 
         if (items.Count > max_items)
         {
-            TrailDestroyer.Instance.GameOver();
+            TrailDestroyer.Instance.GameOver(1);
         }
 
         time += Time.deltaTime;

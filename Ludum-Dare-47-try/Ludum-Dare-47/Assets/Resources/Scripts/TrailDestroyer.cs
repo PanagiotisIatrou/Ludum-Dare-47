@@ -43,6 +43,8 @@ public class TrailDestroyer : MonoBehaviour
     public ParticleSystem[] ps;
     private float time = 0f;
     private int random;
+    public ParticleSystem explotionfactory;
+    public ParticleSystem explotionps;
     private void Awake()
     {
         random = Random.Range(3, 5);
@@ -59,6 +61,8 @@ public class TrailDestroyer : MonoBehaviour
         {
             Instance.ps[i].Stop();
         }
+        Instance.explotionps.Stop();
+        Instance.explotionfactory.Stop();
     }
 
     private void Update()
@@ -201,12 +205,16 @@ public class TrailDestroyer : MonoBehaviour
 
     }
 
-    public void GameOver()
+    public void GameOver(int i)
     {
-        BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 0.5f);
+        if (i == 0)
+            Instance.explotionps.Play();
+        else
+            Instance.explotionfactory.Play();
+        TrainMovement.StopMoving();
+        BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
 
         // Reset static fields
         Wagon.upgradespeed = 1f;
     }
-
 }

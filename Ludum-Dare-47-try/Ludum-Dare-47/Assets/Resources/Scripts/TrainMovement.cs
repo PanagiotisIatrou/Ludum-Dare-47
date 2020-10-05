@@ -11,17 +11,18 @@ public class TrainMovement : MonoBehaviour
 
     private Boost Boost;
     private TrainPickUpDrop pickupdrop;
-
+    private static bool moving=true;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Wagon") && col.gameObject != wagon.previousWagon.previousWagon.gameObject)
         {
-            TrailDestroyer.Instance.GameOver();
+            TrailDestroyer.Instance.GameOver(0);
         }
     }
 
     private void Start()
     {
+        moving = true;
         wagon = GetComponent<Wagon>();
         pickupdrop = GetComponent<TrainPickUpDrop>();
         Boost = GetComponent<Boost>();
@@ -108,46 +109,50 @@ public class TrainMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (moving)
         {
-            if (stopped)
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (prevDir != Direction.DOWN)
-                    currentDir = Direction.UP;
+                if (stopped)
+                {
+                    if (prevDir != Direction.DOWN)
+                        currentDir = Direction.UP;
+                }
+                else
+                    nextDir = Direction.UP;
             }
-            else
-                nextDir = Direction.UP;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (stopped)
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if (prevDir != Direction.UP)
-                    currentDir = Direction.DOWN;
+                if (stopped)
+                {
+                    if (prevDir != Direction.UP)
+                        currentDir = Direction.DOWN;
+                }
+                else
+                    nextDir = Direction.DOWN;
             }
-            else
-                nextDir = Direction.DOWN;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (stopped)
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (prevDir != Direction.RIGHT)
-                    currentDir = Direction.LEFT;
+                if (stopped)
+                {
+                    if (prevDir != Direction.RIGHT)
+                        currentDir = Direction.LEFT;
+                }
+                else
+                    nextDir = Direction.LEFT;
             }
-            else
-                nextDir = Direction.LEFT;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (stopped)
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (prevDir != Direction.LEFT)
-                    currentDir = Direction.RIGHT;
+                if (stopped)
+                {
+                    if (prevDir != Direction.LEFT)
+                        currentDir = Direction.RIGHT;
+                }
+                else
+                    nextDir = Direction.RIGHT;
             }
-            else
-                nextDir = Direction.RIGHT;
         }
+        
 
         if (Utilities.DirToVec2(currentDir) + Utilities.DirToVec2(nextDir) == Vector2.zero)
             nextDir = Direction.NONE;
@@ -159,5 +164,9 @@ public class TrainMovement : MonoBehaviour
         {
             GoToDir(currentDir);
         }
+    }
+    public static void StopMoving()
+    {
+        moving = false;
     }
 }
