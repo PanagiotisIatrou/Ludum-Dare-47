@@ -1,24 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TrainPickUpDrop : MonoBehaviour
 {
+    // Singleton
+    private static TrainPickUpDrop _instance;
+    public static TrainPickUpDrop Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<TrainPickUpDrop>();
+            }
+
+            return _instance;
+        }
+    }
+
     public GameObject WagonPrefab;
     private Wagon wagon;
+    private TrainMovement trainMovement;
     private int sizeofcargo;
     private int balance;
     List<int> inventory;
+    private bool isResupplying = false;
 
     private void Start()
     {
         wagon = GetComponent<Wagon>();
+        trainMovement = GetComponent<TrainMovement>();
         sizeofcargo = 1;
         inventory = new List<int>(sizeofcargo);
         balance = 0;
+    }
+
+    public static bool IsResupplying()
+    {
+        return Instance.isResupplying;
     }
 
     public void PickUpDrop()
@@ -32,14 +52,11 @@ public class TrainPickUpDrop : MonoBehaviour
                     TrailDestroyer.RestoreTrail();
                 TrailDestroyer.DestroyRandomTrail();
             }
-           
-            int temp = sizeofcargo - inventory.Count;
-            for (int i = 0; i < temp; i++)
-            {
-                if (Factory.isEmpty())
-                    break;
-                inventory.Add(Factory.Remove(1)[0]);
-            }
+
+            trainMovement.stopped = true;
+            trainMovement.currentDir = Direction.NONE;
+            trainMovement.nextDir = Direction.NONE;
+            StartCoroutine(TakeItems());
         }
         // Check if train is in any city
         //blue
@@ -80,6 +97,20 @@ public class TrainPickUpDrop : MonoBehaviour
         }
     }
 
+    private IEnumerator TakeItems()
+    {
+        isResupplying = true;
+        yield return new WaitForSeconds(1f);
+        int temp = sizeofcargo - inventory.Count;
+        for (int i = 0; i < temp; i++)
+        {
+            if (Factory.isEmpty())
+                break;
+            inventory.Add(Factory.Remove(1)[0]);
+        }
+        isResupplying = false;
+    }
+
     private bool flage = false;
 
     private void remove(int what)
@@ -93,12 +124,10 @@ public class TrainPickUpDrop : MonoBehaviour
             {
                 if(balance % 4 == 0)
                 {
-                    Debug.Log("Wagon");
                     sizeofcargo++;
                     SpawnWagon();
                     balance = 0;
                 }
-                Debug.Log("Speed and Spawn Rate");
                 Factory.TimeRate();
                 Wagon.UpgradeSpeed();
             }
@@ -122,6 +151,7 @@ public class TrainPickUpDrop : MonoBehaviour
         }
 
     }
+
     private void SpawnWagon()
     {
         // Spawn wagon
