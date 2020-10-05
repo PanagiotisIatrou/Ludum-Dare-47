@@ -8,6 +8,7 @@ public class Wagon : MonoBehaviour
     public Vertex currentVertex;
     private TrainPickUpDrop pickUp;
     private TrainMovement trainMovement;
+    private Direction currentDir = Direction.DOWN;
     public bool isMoving = false;
     private float speed = 3f;
     public static float upgradespeed = 1f;
@@ -54,10 +55,11 @@ public class Wagon : MonoBehaviour
         while ((Vector2)transform.position != newPos)
         {
             float boost = Boost.BOOST() ? 2f : 1;
+            Vector2 movement = (Vector3)offset * speed * boost * upgradespeed * Time.deltaTime;
             transform.position += (Vector3)offset * speed * boost * upgradespeed * Time.deltaTime;
             prevDist = dist;
             dist = Vector2.Distance(transform.position, newPos);
-            if (dist - prevDist > 0f && prevDist != -1)
+            if ((dist > prevDist || Vector2.Distance((Vector2)transform.position + movement, newPos) > dist) && prevDist != -1)
                 transform.position = newPos;
             yield return null;
         }

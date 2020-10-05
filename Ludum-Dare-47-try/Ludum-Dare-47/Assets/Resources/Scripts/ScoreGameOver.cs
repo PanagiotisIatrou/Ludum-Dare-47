@@ -9,5 +9,6 @@ public class ScoreGameOver : MonoBehaviour
     {
         Time.timeScale = 1f;
         scoreText.SetText("Score: " + ScoreMoneyManager.score);
+        ScoreMoneyManager.score = 0;
     }
 }
