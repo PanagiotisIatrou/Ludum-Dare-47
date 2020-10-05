@@ -23,10 +23,9 @@ public class Factory : MonoBehaviour
 
     void Update()
     {
-
         if (items.Count > max_items)
         {
-            TrailDestroyer.Instance.GameOver();
+            GameManager.GameOver();
         }
 
         time += Time.deltaTime;

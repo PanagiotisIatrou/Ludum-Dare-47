@@ -18,7 +18,7 @@ public class TrainMovement : MonoBehaviour
     {
         if (col.CompareTag("Wagon") && col.gameObject != wagon.previousWagon.previousWagon.gameObject)
         {
-            TrailDestroyer.Instance.GameOver();
+            GameManager.GameOver();
         }
     }
 

@@ -79,19 +79,19 @@ public class TrainPickUpDrop : MonoBehaviour
         }
         else if ((Vector2)transform.position == new Vector2(0, 2) && !TrailDestroyer.Instance.upVert.state)
         {
-            TrailDestroyer.Instance.GameOver();
+            GameManager.GameOver();
         }
         else if ((Vector2)transform.position == new Vector2(-2, 0) && !TrailDestroyer.Instance.leftVert.state)
         {
-            TrailDestroyer.Instance.GameOver();
+            GameManager.GameOver();
         }
         else if ((Vector2)transform.position == new Vector2(2, 0) && !TrailDestroyer.Instance.rightVert.state)
         {
-            TrailDestroyer.Instance.GameOver();
+            GameManager.GameOver();
         }
         else if ((Vector2)transform.position == new Vector2(0, -2) && !TrailDestroyer.Instance.downVert.state)
         {
-            TrailDestroyer.Instance.GameOver();
+            GameManager.GameOver();
         }
     }
 
