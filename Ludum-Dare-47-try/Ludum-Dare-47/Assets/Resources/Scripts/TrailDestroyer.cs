@@ -40,6 +40,7 @@ public class TrailDestroyer : MonoBehaviour
     private int lastDestroyedIndex = -1;
     private List <SpriteRenderer> spriteRenderer= new List<SpriteRenderer>(5);
     public Sprite[] spriteArray;
+    public ParticleSystem[] ps;
     private float time = 0f;
     private int random ;
     private void Awake()
@@ -54,7 +55,10 @@ public class TrailDestroyer : MonoBehaviour
         downVert = VertexHolder.GetChild(6).GetComponent<Vertex>();
         leftVert = VertexHolder.GetChild(14).GetComponent<Vertex>();
         rightVert = VertexHolder.GetChild(10).GetComponent<Vertex>();
-
+        for (int i = 0; i < 4; i++)
+        {
+            Instance.ps[i].Stop();
+        }
     }
 
     private void Update()
@@ -93,6 +97,7 @@ public class TrailDestroyer : MonoBehaviour
         for (int i =0;i < 4; i++)
         {
             Instance.spriteRenderer[i].sprite = Instance.spriteArray[0];
+            Instance.ps[i].Stop();
         }
 
         Instance.destroyedIndex = -1;
@@ -141,6 +146,7 @@ public class TrailDestroyer : MonoBehaviour
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.upVert;
                 Instance.spriteRenderer[0].sprite = Instance.spriteArray[1];
+                Instance.ps[0].Play();
             }
 
             else if (r == 1)
@@ -155,6 +161,7 @@ public class TrailDestroyer : MonoBehaviour
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.downVert;
                 Instance.spriteRenderer[1].sprite = Instance.spriteArray[1];
+                Instance.ps[1].Play();
             }
 
             else if (r == 2)
@@ -170,6 +177,7 @@ public class TrailDestroyer : MonoBehaviour
                 Instance.destroyedTrail = Instance.leftVert;
                 Instance.spriteRenderer[2].sprite = Instance.spriteArray[1];
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
+                Instance.ps[2].Play();
             }
 
             else if (r == 3)
@@ -185,6 +193,7 @@ public class TrailDestroyer : MonoBehaviour
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.rightVert;
                 Instance.spriteRenderer[3].sprite = Instance.spriteArray[1];
+                Instance.ps[3].Play();
             }
             Instance.destroyedTrail.state = false;
         }

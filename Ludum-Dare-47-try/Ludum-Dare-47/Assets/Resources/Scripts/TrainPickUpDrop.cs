@@ -28,6 +28,8 @@ public class TrainPickUpDrop : MonoBehaviour
     private bool isResupplying = false;
 
     public AudioClip pickup;
+    public AudioSource dropoff;
+    private bool dropoffflage;
 
     private void Start()
     {
@@ -36,6 +38,18 @@ public class TrainPickUpDrop : MonoBehaviour
         sizeofcargo = 1;
         inventory = new List<int>(sizeofcargo);
         balance = 0;
+    }
+
+    private float max = 1f;
+    private float time = 0f;
+    private void Update()
+    {
+        time += Time.deltaTime;
+        if(time<max && dropoffflage == true)
+        {
+            dropoff.Stop();
+            dropoffflage = false;
+        }
     }
 
     public void PickUpDrop()
@@ -53,8 +67,12 @@ public class TrainPickUpDrop : MonoBehaviour
                 inventory.Add(j);
                 ListOfItmes.Instance.item[j] ++;
             }
-            ListOfItmes.Instance.Check();
-            AudioSource.PlayClipAtPoint(pickup, Vector3.zero, 1f);
+            if (inventory.Count != 0)
+            {
+                ListOfItmes.Instance.Check();
+                AudioSource.PlayClipAtPoint(pickup, Vector3.zero, 1f);
+            }
+                
         }
         // Check if train is in any city
         //blue
@@ -101,16 +119,15 @@ public class TrainPickUpDrop : MonoBehaviour
     private bool flage = false;
 
     private void remove(int what)
-    {
-        AudioSource.PlayClipAtPoint(pickup, Vector3.zero, 1f);
+    {   
         listremove(what);
-        ListOfItmes.Instance.Check();
         if (flage)
         {
+            ListOfItmes.Instance.Check();
             balance++;
-            if (balance % 2 == 0)
+            if (balance == 1||balance==3)
             {
-                if(balance % 4 == 0)
+                if(balance ==3)
                 {
                     sizeofcargo++;
                     SpawnWagon();
@@ -119,7 +136,8 @@ public class TrainPickUpDrop : MonoBehaviour
                 Factory.TimeRate();
                 Wagon.UpgradeSpeed();
             }
-
+            dropoff.Play();
+            dropoffflage = true;
         }
         flage = false;
     }

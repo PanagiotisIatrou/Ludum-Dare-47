@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 18391321}
   - component: {fileID: 18391320}
   - component: {fileID: 18391322}
-  - component: {fileID: 18391323}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -178,18 +177,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4a70edc004e5e34cb2c84249878ff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &18391323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18391319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc92276bcf4798440a2ff6baf2d3b052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &56245325
@@ -842,7 +829,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credits
+  m_text: Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 607d0a93d05fc8945915aa39e753e970, type: 2}
   m_sharedMaterial: {fileID: -354614291014073953, guid: 607d0a93d05fc8945915aa39e753e970, type: 2}
@@ -1045,9 +1032,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 325e779db13315c4780fd52189cab5e2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.54
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
