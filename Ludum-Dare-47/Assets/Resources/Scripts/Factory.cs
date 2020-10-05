@@ -40,7 +40,7 @@ public class Factory : MonoBehaviour
     public static void TimeRate()
     {
 
-        if(max_time >1.5f)
+        if(max_time >2f)
             if (ScoreMoneyManager.HowMuchScore() < 10)
                 max_time -= 0.2f;
             else if (ScoreMoneyManager.HowMuchScore() < 20)
