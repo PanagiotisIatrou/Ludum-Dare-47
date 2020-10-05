@@ -216,6 +216,7 @@ public class TrailDestroyer : MonoBehaviour
             Instance.explotionps.Play();
         else
             Instance.explotionfactory.Play();
+
         TrainMovement.StopMoving();
         BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
 

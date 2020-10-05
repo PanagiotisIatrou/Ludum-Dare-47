@@ -8,7 +8,6 @@ public class Wagon : MonoBehaviour
     public Vertex currentVertex;
     private TrainPickUpDrop pickUp;
     private TrainMovement trainMovement;
-    private Direction currentDir = Direction.DOWN;
     public bool isMoving = false;
     private float speed = 3f;
     public static float upgradespeed = 1f;

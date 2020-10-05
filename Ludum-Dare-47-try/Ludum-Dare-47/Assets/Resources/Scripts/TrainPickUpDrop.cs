@@ -24,7 +24,6 @@ public class TrainPickUpDrop : MonoBehaviour
     private int sizeofcargo;
     private int balance;
     private List<int> inventory;
-    private bool isResupplying = false;
 
     public AudioClip pickup;
     public AudioSource dropoff;

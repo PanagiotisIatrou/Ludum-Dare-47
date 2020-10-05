@@ -36,9 +36,6 @@ public class Factory : MonoBehaviour
     {
         flagewanring = false;
         AddItem();
-        AddItem();
-        AddItem();
-        AddItem();
     }
 
     void Update()
