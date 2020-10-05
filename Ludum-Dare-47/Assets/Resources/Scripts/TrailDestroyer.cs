@@ -37,9 +37,11 @@ public class TrailDestroyer : MonoBehaviour
     private int lastDestroyedIndex = -1;
     private List <SpriteRenderer> spriteRenderer= new List<SpriteRenderer>(5);
     public Sprite[] spriteArray;
-
+    private float time = 0f;
+    private int random ;
     private void Awake()
     {
+        random = Random.Range(3, 5);
         spriteRenderer.Add(VertexHolder.GetChild(2).GetComponent<SpriteRenderer>());
         spriteRenderer.Add(VertexHolder.GetChild(6).GetComponent<SpriteRenderer>());
         spriteRenderer.Add(VertexHolder.GetChild(14).GetComponent<SpriteRenderer>());
@@ -50,6 +52,23 @@ public class TrailDestroyer : MonoBehaviour
         leftVert = VertexHolder.GetChild(14).GetComponent<Vertex>();
         rightVert = VertexHolder.GetChild(10).GetComponent<Vertex>();
 
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+        if (time >= random)
+        {
+            random = Random.Range(3, 5);
+            time = 0;
+            if (TrailDestroyer.Instance.Flage)
+            {
+                if (TrailDestroyer.IsTrailDestroyed())
+                    TrailDestroyer.RestoreTrail();
+                TrailDestroyer.DestroyRandomTrail();
+            }
+
+        }
     }
 
     public static void DestroyRandomTrail()
