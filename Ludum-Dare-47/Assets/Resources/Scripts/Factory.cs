@@ -26,7 +26,7 @@ public class Factory : MonoBehaviour
 
         if (items.Count > max_items)
         {
-            Debug.LogWarning("GameOver");
+            TrailDestroyer.Instance.GameOver();
         }
 
         time += Time.deltaTime;
