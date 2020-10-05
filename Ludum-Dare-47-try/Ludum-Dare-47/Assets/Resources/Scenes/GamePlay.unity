@@ -265,7 +265,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Transport every Item that the factory produces without hitting yourself
     and running over the broken tracks. If the factory produces more items that it
-    can hold(4) you lose. Good Luck and Have Fun :)
+    can hold (4 items) you lose. Good Luck and Have Fun :)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 607d0a93d05fc8945915aa39e753e970, type: 2}
   m_sharedMaterial: {fileID: -354614291014073953, guid: 607d0a93d05fc8945915aa39e753e970, type: 2}
