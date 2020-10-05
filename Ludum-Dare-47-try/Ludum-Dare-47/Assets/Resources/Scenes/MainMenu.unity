@@ -1425,7 +1425,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 18391322}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: OnStartButtonListener
+        m_MethodName: OnHelp2ButtonListener
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

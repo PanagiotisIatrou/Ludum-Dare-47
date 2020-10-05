@@ -1069,13 +1069,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'W: Up
+  m_text: 'W / Up Arrow: Up
 
-    A: Left
+    A / Left Arrow: Left
 
-    S: Down
+    S / Down Arrow: Down
 
-    D: Right
+    D
+    / Right Arrow: Right
 
     SpaceBar: Boost'
   m_isRightToLeft: 0
