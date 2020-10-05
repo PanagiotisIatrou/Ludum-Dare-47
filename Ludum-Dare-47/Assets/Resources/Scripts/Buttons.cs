@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Buttons : MonoBehaviour
 {
+    //public Camera camera;
     public void OnStartButtonListener()
     {
         BlackFader.GoToScene("Scene0", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
