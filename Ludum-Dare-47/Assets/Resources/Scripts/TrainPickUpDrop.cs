@@ -87,18 +87,15 @@ public class TrainPickUpDrop : MonoBehaviour
         listremove(what);
         if (flage)
         {
-            Debug.Log(balance);
             balance++;
             if (balance % 2 == 0)
             {
                 if(balance % 4 == 0)
                 {
-                    Debug.Log("Wagon");
                     sizeofcargo++;
                     SpawnWagon();
                     balance = 0;
                 }
-                Debug.Log("Speed and Spawn Rate");
                 Factory.TimeRate();
                 Wagon.UpgradeSpeed();
             }
