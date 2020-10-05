@@ -218,7 +218,7 @@ public class TrailDestroyer : MonoBehaviour
             Instance.explotionfactory.Play();
 
         TrainMovement.StopMoving();
-        BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
+        BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1.5f);
 
         // Reset static fields
         Wagon.upgradespeed = 1f;
