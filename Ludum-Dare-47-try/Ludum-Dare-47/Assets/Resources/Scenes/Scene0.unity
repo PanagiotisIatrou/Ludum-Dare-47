@@ -10145,7 +10145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WagonPrefab: {fileID: 2463460763785217874, guid: c0b61cbcb7e014f4896168295557a3ca, type: 3}
-  pickup: {fileID: 0}
+  pickup: {fileID: 8300000, guid: 9a2ee46cc599f2345b19ae12c1720e94, type: 3}
 --- !u!114 &1710079790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10158,7 +10158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e218056fa52b265409512bbbc1e5745b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostclip: {fileID: 0}
+  boostclip: {fileID: 8300000, guid: 892073d8af3aa4c41a5cadeb26037370, type: 3}
 --- !u!114 &1710079791
 MonoBehaviour:
   m_ObjectHideFlags: 0
