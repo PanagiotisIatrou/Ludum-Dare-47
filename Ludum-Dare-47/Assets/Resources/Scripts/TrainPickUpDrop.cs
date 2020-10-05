@@ -10,6 +10,7 @@ public class TrainPickUpDrop : MonoBehaviour
     public GameObject WagonPrefab;
     private Wagon wagon;
     private int sizeofcargo;
+    private int balance;
     List<int> inventory;
 
     private void Start()
@@ -17,6 +18,7 @@ public class TrainPickUpDrop : MonoBehaviour
         wagon = GetComponent<Wagon>();
         sizeofcargo = 1;
         inventory = new List<int>(sizeofcargo);
+        balance = 0;
     }
 
     public void PickUpDrop()
@@ -72,7 +74,7 @@ public class TrainPickUpDrop : MonoBehaviour
         {
             Debug.LogError("GameOver");
         }
-        else if ((Vector2)transform.position == new Vector2(0, -2) && !TrailDestroyer.Instance.upVert.state)
+        else if ((Vector2)transform.position == new Vector2(0, -2) && !TrailDestroyer.Instance.downVert.state)
         {
             Debug.LogError("GameOver");
         }
@@ -85,12 +87,21 @@ public class TrainPickUpDrop : MonoBehaviour
         listremove(what);
         if (flage)
         {
-            sizeofcargo++;
-            Factory.TimeRate();
-            Wagon.UpgradeSpeed();
-            SpawnWagon();
-            
-
+            Debug.Log(balance);
+            balance++;
+            if (balance % 2 == 0)
+            {
+                if(balance % 4 == 0)
+                {
+                    Debug.Log("Wagon");
+                    sizeofcargo++;
+                    SpawnWagon();
+                    balance = 0;
+                }
+                Debug.Log("Speed and Spawn Rate");
+                Factory.TimeRate();
+                Wagon.UpgradeSpeed();
+            }
 
         }
         flage = false;

@@ -26,7 +26,12 @@ public class Wagon : MonoBehaviour
 
     public static void UpgradeSpeed()
     {
-        upgradespeed += 0.1f;
+        if (ScoreMoneyManager.HowMuchScore() < 10)
+            upgradespeed += 0.2f;
+        else if (ScoreMoneyManager.HowMuchScore() < 20)
+            upgradespeed += 0.15f;
+        else
+            upgradespeed += 0.1f;
     }
 
     public void MoveToVertex(Vertex vert)

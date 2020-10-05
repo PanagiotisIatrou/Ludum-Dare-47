@@ -39,8 +39,14 @@ public class Factory : MonoBehaviour
     }
     public static void TimeRate()
     {
+
         if(max_time >1.5f)
-            max_time -= 0.1f;
+            if (ScoreMoneyManager.HowMuchScore() < 10)
+                max_time -= 0.2f;
+            else if (ScoreMoneyManager.HowMuchScore() < 20)
+                max_time -= 0.15f;
+            else
+                max_time -= 0.1f;
     }
     private void AddItem()
     {
