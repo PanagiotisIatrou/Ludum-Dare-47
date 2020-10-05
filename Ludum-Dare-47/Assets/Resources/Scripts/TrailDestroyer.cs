@@ -23,10 +23,10 @@ public class TrailDestroyer : MonoBehaviour
     private static GameObject item;
 
     public Transform VertexHolder;
-    private Vertex upVert;
-    private Vertex downVert;
-    private Vertex leftVert;
-    private Vertex rightVert;
+    public Vertex upVert;
+    public Vertex downVert;
+    public Vertex leftVert;
+    public Vertex rightVert;
 
     private Vertex destroyedTrail = null;
     
@@ -35,9 +35,16 @@ public class TrailDestroyer : MonoBehaviour
     private int destroyedIndex = -1;
 
     private int lastDestroyedIndex = -1;
-    
-    private void Start()
+    private List <SpriteRenderer> spriteRenderer= new List<SpriteRenderer>(5);
+    public Sprite[] spriteArray;
+
+    private void Awake()
     {
+        spriteRenderer.Add(VertexHolder.GetChild(2).GetComponent<SpriteRenderer>());
+        spriteRenderer.Add(VertexHolder.GetChild(6).GetComponent<SpriteRenderer>());
+        spriteRenderer.Add(VertexHolder.GetChild(14).GetComponent<SpriteRenderer>());
+        spriteRenderer.Add(VertexHolder.GetChild(10).GetComponent<SpriteRenderer>());
+
         upVert = VertexHolder.GetChild(2).GetComponent<Vertex>();
         downVert = VertexHolder.GetChild(6).GetComponent<Vertex>();
         leftVert = VertexHolder.GetChild(14).GetComponent<Vertex>();
@@ -61,94 +68,102 @@ public class TrailDestroyer : MonoBehaviour
         Instance.lastDestroyedIndex = Instance.destroyedIndex;
 
         Instance.destroyedTrail.state = true;
-        Instance.destroyedTrail.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        for (int i =0;i < 4; i++)
+        {
+            Instance.spriteRenderer[i].sprite = Instance.spriteArray[0];
+        }
+
         Instance.destroyedIndex = -1;
         Instance.destroyedTrail = null;
     }
 
     private static IEnumerator Create()
     {
-            Instance.Flage = false;
-            int r;
-            if (Instance.destroyedIndex == -1)
-            {
-                r = Random.Range(0, 4);
-            }
+        Instance.Flage = false;
+        int r;
+        if (Instance.destroyedIndex == -1)
+        {
+            r = Random.Range(0, 4);
+        }
+        else
+        {
+            if (Instance.lastDestroyedIndex == 0)
+                r = Random.Range(1, 4);
+            else if (Instance.lastDestroyedIndex == 3)
+                r = Random.Range(0, 3);
             else
             {
-                if (Instance.lastDestroyedIndex == 0)
-                    r = Random.Range(1, 4);
-                else if (Instance.lastDestroyedIndex == 3)
-                    r = Random.Range(0, 3);
+                int r1 = Random.Range(0, Instance.lastDestroyedIndex);
+                int r2 = Random.Range(Instance.lastDestroyedIndex, 4);
+                if (Random.Range(0, 2) == 0)
+                    r = r1;
                 else
-                {
-                    int r1 = Random.Range(0, Instance.lastDestroyedIndex);
-                    int r2 = Random.Range(Instance.lastDestroyedIndex, 4);
-                    if (Random.Range(0, 2) == 0)
-                        r = r1;
-                    else
-                        r = r2;
-                }
+                    r = r2;
             }
+        }
 
-            int random = Random.Range(0, 5);
-            if (random >= 2)
-            {
+        int random = Random.Range(0, 5);
+        if (random >= 2)
+        {
                 
-                Instance.destroyedIndex = r;
-                if (r == 0)
-                {
+            Instance.destroyedIndex = r;
+            if (r == 0)
+            {
                     
                     
-                    item = Instantiate(Instance.prefab, Instance.upVert.transform.position, Quaternion.identity);
+                item = Instantiate(Instance.prefab, Instance.upVert.transform.position, Quaternion.identity);
 
-                    yield return  new WaitForSeconds(4);
+                yield return  new WaitForSeconds(4);
 
-                    Destroy(item);
+                Destroy(item);
 
-                    Instance.destroyedTrail = Instance.upVert;
-                }
-
-                else if (r == 1)
-                {
-
-                    item = Instantiate(Instance.prefab, Instance.downVert.transform.position, Quaternion.identity);
-
-                    yield return new WaitForSeconds(4);
-
-                    Destroy(item);
-
-                    Instance.destroyedTrail = Instance.downVert;
-                }
-
-                else if (r == 2)
-                {
-                    
-                    item = Instantiate(Instance.prefab, Instance.leftVert.transform.position, Quaternion.identity);
-
-                    yield return new WaitForSeconds(4);
-
-                    Destroy(item);
-
-                    Instance.destroyedTrail = Instance.leftVert;
-                }
-
-                else if (r == 3)
-                {
-
-                    item = Instantiate(Instance.prefab, Instance.rightVert.transform.position, Quaternion.identity);
-
-                    yield return  new WaitForSeconds(4);
-
-                    Destroy(item);
-
-
-                    Instance.destroyedTrail = Instance.rightVert;
-                }
-                Instance.destroyedTrail.state = false;
-                Instance.destroyedTrail.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                Instance.destroyedTrail = Instance.upVert;
+                Instance.spriteRenderer[0].sprite = Instance.spriteArray[1];
             }
-            Instance.Flage = true;
+
+            else if (r == 1)
+            {
+
+                item = Instantiate(Instance.prefab, Instance.downVert.transform.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(4);
+
+                Destroy(item);
+
+                Instance.destroyedTrail = Instance.downVert;
+                Instance.spriteRenderer[1].sprite = Instance.spriteArray[1];
+            }
+
+            else if (r == 2)
+            {
+                    
+                item = Instantiate(Instance.prefab, Instance.leftVert.transform.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(4);
+
+                Destroy(item);
+
+                Instance.destroyedTrail = Instance.leftVert;
+                Instance.spriteRenderer[2].sprite = Instance.spriteArray[1];
+
+            }
+
+            else if (r == 3)
+            {
+
+                item = Instantiate(Instance.prefab, Instance.rightVert.transform.position, Quaternion.identity);
+
+                yield return  new WaitForSeconds(4);
+
+                Destroy(item);
+
+
+                Instance.destroyedTrail = Instance.rightVert;
+                Instance.spriteRenderer[3].sprite = Instance.spriteArray[1];
+            }
+            Instance.destroyedTrail.state = false;
+        }
+        Instance.Flage = true;
 
     }
    
