@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms;
 
 public class ScoreMoneyManager : MonoBehaviour
 {
+
     private static int score;   
     void Start()
     {
