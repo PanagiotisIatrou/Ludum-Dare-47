@@ -8,8 +8,8 @@ public class TrainMovement : MonoBehaviour
     private Wagon wagon;
     public Direction currentDir = Direction.NONE;
     private Direction prevDir = Direction.NONE;
-    private Direction nextDir = Direction.NONE;
-    private bool stopped = true;
+    public Direction nextDir = Direction.NONE;
+    public bool stopped = true;
 
     private Boost Boost;
     private TrainPickUpDrop pickupdrop;
@@ -157,7 +157,7 @@ public class TrainMovement : MonoBehaviour
         if (wagon.isMoving)
             return;
 
-        if (currentDir != Direction.NONE)
+        if (currentDir != Direction.NONE && !TrainPickUpDrop.IsResupplying())
         {
             GoToDir(currentDir);
         }
