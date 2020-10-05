@@ -36,11 +36,6 @@ public class TrainPickUpDrop : MonoBehaviour
         balance = 0;
     }
 
-    public static bool IsResupplying()
-    {
-        return Instance.isResupplying;
-    }
-
     public void PickUpDrop()
     {
         // Check if train is in factory
@@ -53,10 +48,13 @@ public class TrainPickUpDrop : MonoBehaviour
                 TrailDestroyer.DestroyRandomTrail();
             }
 
-            trainMovement.stopped = true;
-            trainMovement.currentDir = Direction.NONE;
-            trainMovement.nextDir = Direction.NONE;
-            StartCoroutine(TakeItems());
+            int temp = sizeofcargo - inventory.Count;
+            for (int i = 0; i < temp; i++)
+            {
+                if (Factory.isEmpty())
+                    break;
+                inventory.Add(Factory.Remove(1)[0]);
+            }
         }
         // Check if train is in any city
         //blue
@@ -95,20 +93,6 @@ public class TrainPickUpDrop : MonoBehaviour
         {
             Debug.LogError("GameOver");
         }
-    }
-
-    private IEnumerator TakeItems()
-    {
-        isResupplying = true;
-        yield return new WaitForSeconds(1f);
-        int temp = sizeofcargo - inventory.Count;
-        for (int i = 0; i < temp; i++)
-        {
-            if (Factory.isEmpty())
-                break;
-            inventory.Add(Factory.Remove(1)[0]);
-        }
-        isResupplying = false;
     }
 
     private bool flage = false;

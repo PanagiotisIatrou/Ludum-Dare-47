@@ -157,7 +157,7 @@ public class TrainMovement : MonoBehaviour
         if (wagon.isMoving)
             return;
 
-        if (currentDir != Direction.NONE && !TrainPickUpDrop.IsResupplying())
+        if (currentDir != Direction.NONE)
         {
             GoToDir(currentDir);
         }
