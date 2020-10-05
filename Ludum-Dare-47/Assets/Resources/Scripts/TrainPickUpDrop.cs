@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -87,40 +88,9 @@ public class TrainPickUpDrop : MonoBehaviour
             sizeofcargo++;
             Factory.TimeRate();
             Wagon.UpgradeSpeed();
+            SpawnWagon();
+            
 
-            // Spawn wagon
-            Wagon lastWagon = wagon;
-            Wagon temp = wagon;
-            while (true)
-            {
-                temp = temp.previousWagon;
-                if (temp == null)
-                    break;
-                lastWagon = temp;
-            }
-
-            // Now we have last
-            Wagon preLastWagon = lastWagon.frontWagon;
-            List<Vertex> neighbours = lastWagon.currentVertex.neighbours;
-
-            Vector2 offset = lastWagon.transform.position - preLastWagon.transform.position;
-            Vector2 newPos = (Vector2)lastWagon.transform.position + offset;
-            bool isOk = false;
-            for (int i = 0; i < neighbours.Count; i++)
-            {
-                if (newPos == (Vector2)neighbours[i].transform.position)
-                {
-                    isOk = true;
-                    break;
-                }
-            }
-            if (!isOk)
-                newPos = neighbours[0].transform.position;
-            // Spawn new wagon on newPos
-            GameObject newGO = Instantiate(WagonPrefab, newPos, Quaternion.identity);
-            Wagon newWagon = newGO.GetComponent<Wagon>();
-            newWagon.frontWagon = lastWagon;
-            lastWagon.previousWagon = newWagon;
 
         }
         flage = false;
@@ -140,5 +110,41 @@ public class TrainPickUpDrop : MonoBehaviour
             }
         }
 
+    }
+    private void SpawnWagon()
+    {
+        // Spawn wagon
+        Wagon lastWagon = wagon;
+        Wagon temp = wagon;
+        while (true)
+        {
+            temp = temp.previousWagon;
+            if (temp == null)
+                break;
+            lastWagon = temp;
+        }
+
+        // Now we have last
+        Wagon preLastWagon = lastWagon.frontWagon;
+        List<Vertex> neighbours = lastWagon.currentVertex.neighbours;
+
+        Vector2 offset = lastWagon.transform.position - preLastWagon.transform.position;
+        Vector2 newPos = (Vector2)lastWagon.transform.position + offset;
+        bool isOk = false;
+        for (int i = 0; i < neighbours.Count; i++)
+        {
+            if (newPos == (Vector2)neighbours[i].transform.position)
+            {
+                isOk = true;
+                break;
+            }
+        }
+        if (!isOk)
+            newPos = neighbours[0].transform.position;
+        // Spawn new wagon on newPos
+        GameObject newGO = Instantiate(WagonPrefab, newPos, Quaternion.identity);
+        Wagon newWagon = newGO.GetComponent<Wagon>();
+        newWagon.frontWagon = lastWagon;
+        lastWagon.previousWagon = newWagon;
     }
 }
