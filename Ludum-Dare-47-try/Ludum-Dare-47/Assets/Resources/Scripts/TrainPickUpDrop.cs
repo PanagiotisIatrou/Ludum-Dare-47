@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TrainPickUpDrop : MonoBehaviour
@@ -24,7 +23,7 @@ public class TrainPickUpDrop : MonoBehaviour
     private TrainMovement trainMovement;
     private int sizeofcargo;
     private int balance;
-    private static List<int> inventory;
+    private List<int> inventory;
     private bool isResupplying = false;
 
     public AudioClip pickup;
@@ -195,12 +194,14 @@ public class TrainPickUpDrop : MonoBehaviour
         newWagon.frontWagon = lastWagon;
         lastWagon.previousWagon = newWagon;
     }
+
     public static List<int> WhatItemsinInventory()
     {
-        return inventory;
+        return Instance.inventory;
     }
+
     public static int HowManyItems()
     {
-        return inventory.Count;
+        return Instance.inventory.Count;
     }
 }

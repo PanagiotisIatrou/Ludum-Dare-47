@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Factory : MonoBehaviour
 {
+    // Singleton
+    private static Factory _instance;
+    public static Factory Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<Factory>();
+            }
+
+            return _instance;
+        }
+    }
+
     private const int max_items = 4;
-    private static float max_time = 5;
+    private float max_time = 5;
     private float time = 0;
-    private static Queue<GameObject> items = new Queue<GameObject>(max_items);
-    private static Queue<int> num_items = new Queue<int>(max_items);
+    private Queue<GameObject> items = new Queue<GameObject>(max_items);
+    private Queue<int> num_items = new Queue<int>(max_items);
     private bool flagewanring;
     public GameObject warningpref;
     public GameObject blue;
@@ -52,13 +64,15 @@ public class Factory : MonoBehaviour
     public static void TimeRate()
     {
 
-        if(max_time >2f)
+        if(Instance.max_time > 2f)
+        {
             if (ScoreMoneyManager.HowMuchScore() < 10)
-                max_time -= 0.2f;
+                Instance.max_time -= 0.2f;
             else if (ScoreMoneyManager.HowMuchScore() < 20)
-                max_time -= 0.15f;
+                Instance.max_time -= 0.15f;
             else
-                max_time -= 0.1f;
+                Instance.max_time -= 0.1f;
+        }
     }
     private void AddItem()
     {
@@ -115,23 +129,23 @@ public class Factory : MonoBehaviour
     
     public static List<int> Remove(int size)
     {
-        if (items.Count == 0)
+        if (Instance.items.Count == 0)
         {
             return new List<int>(0);
         }
         List<int> list = new List<int>(size);
         for (int i = 0; i< size; i++)
         {
-            GameObject item = items.Dequeue();
-            int temp2 = num_items.Dequeue();
+            GameObject item = Instance.items.Dequeue();
+            int temp2 = Instance.num_items.Dequeue();
             list.Add(temp2);
             Destroy(item);
         }
-        int temp = items.Count;
+        int temp = Instance.items.Count;
         Queue<GameObject> temp_queue = new Queue<GameObject>(max_items);
         for (int j = 0; j < temp; j++)
         {
-            GameObject item = items.Dequeue();
+            GameObject item = Instance.items.Dequeue();
             if (j == 0)
             {
                 item.transform.position = new Vector3(-0.4083648f, 0.4594103f, 0);
@@ -146,13 +160,13 @@ public class Factory : MonoBehaviour
             }
             temp_queue.Enqueue(item);
         }
-        items = temp_queue;
+        Instance.items = temp_queue;
         return list;
     }
     
     public static bool isEmpty()
     {
-        if (items.Count != 0)
+        if (Instance.items.Count != 0)
             return false;
         return true;
     }

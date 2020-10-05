@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SocialPlatforms;
+﻿using UnityEngine;
 
 public class ScoreMoneyManager : MonoBehaviour
 {
+    public static int score;   
 
-    private static int score;   
     void Start()
     {
         score = 0;

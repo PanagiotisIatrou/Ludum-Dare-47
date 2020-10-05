@@ -20,7 +20,7 @@ public class TrailDestroyer : MonoBehaviour
     }
 
     public GameObject prefab;
-    private static GameObject item;
+    private GameObject item;
 
     public Transform VertexHolder;
     public Vertex upVert;
@@ -32,17 +32,17 @@ public class TrailDestroyer : MonoBehaviour
     public AudioClip explotion;
 
     private Vertex destroyedTrail = null;
-    
+
     public bool Flage = true;
-   
+
     private int destroyedIndex = -1;
 
     private int lastDestroyedIndex = -1;
-    private List <SpriteRenderer> spriteRenderer= new List<SpriteRenderer>(5);
+    private List<SpriteRenderer> spriteRenderer = new List<SpriteRenderer>(5);
     public Sprite[] spriteArray;
     public ParticleSystem[] ps;
     private float time = 0f;
-    private int random ;
+    private int random;
     private void Awake()
     {
         random = Random.Range(3, 5);
@@ -81,7 +81,7 @@ public class TrailDestroyer : MonoBehaviour
     public static void DestroyRandomTrail()
     {
         Instance.StartCoroutine(Create());
-        
+
     }
 
     public static bool IsTrailDestroyed()
@@ -94,7 +94,7 @@ public class TrailDestroyer : MonoBehaviour
         Instance.lastDestroyedIndex = Instance.destroyedIndex;
 
         Instance.destroyedTrail.state = true;
-        for (int i =0;i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             Instance.spriteRenderer[i].sprite = Instance.spriteArray[0];
             Instance.ps[i].Stop();
@@ -132,17 +132,17 @@ public class TrailDestroyer : MonoBehaviour
         int random = Random.Range(0, 5);
         if (random >= 2)
         {
-                
+
             Instance.destroyedIndex = r;
             if (r == 0)
             {
 
-                Instance.warning.Play();   
-                item = Instantiate(Instance.prefab, Instance.upVert.transform.position, Quaternion.identity);
-                yield return  new WaitForSeconds(4);
+                Instance.warning.Play();
+                Instance.item = Instantiate(Instance.prefab, Instance.upVert.transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(4);
                 Instance.warning.Stop();
 
-                Destroy(item);
+                Destroy(Instance.item);
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.upVert;
                 Instance.spriteRenderer[0].sprite = Instance.spriteArray[1];
@@ -152,12 +152,12 @@ public class TrailDestroyer : MonoBehaviour
             else if (r == 1)
             {
                 Instance.warning.Play();
-                item = Instantiate(Instance.prefab, Instance.downVert.transform.position, Quaternion.identity);
+                Instance.item = Instantiate(Instance.prefab, Instance.downVert.transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(4);
                 Instance.warning.Stop();
 
-                Destroy(item);
+                Destroy(Instance.item);
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.downVert;
                 Instance.spriteRenderer[1].sprite = Instance.spriteArray[1];
@@ -167,12 +167,12 @@ public class TrailDestroyer : MonoBehaviour
             else if (r == 2)
             {
                 Instance.warning.Play();
-                item = Instantiate(Instance.prefab, Instance.leftVert.transform.position, Quaternion.identity);
+                Instance.item = Instantiate(Instance.prefab, Instance.leftVert.transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(4);
                 Instance.warning.Stop();
 
-                Destroy(item);
+                Destroy(Instance.item);
 
                 Instance.destroyedTrail = Instance.leftVert;
                 Instance.spriteRenderer[2].sprite = Instance.spriteArray[1];
@@ -183,12 +183,12 @@ public class TrailDestroyer : MonoBehaviour
             else if (r == 3)
             {
                 Instance.warning.Play();
-                item = Instantiate(Instance.prefab, Instance.rightVert.transform.position, Quaternion.identity);
+                Instance.item = Instantiate(Instance.prefab, Instance.rightVert.transform.position, Quaternion.identity);
 
-                yield return  new WaitForSeconds(4);
+                yield return new WaitForSeconds(4);
                 Instance.warning.Stop();
 
-                Destroy(item);
+                Destroy(Instance.item);
 
                 AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.rightVert;
@@ -200,12 +200,13 @@ public class TrailDestroyer : MonoBehaviour
         Instance.Flage = true;
 
     }
-   
+
     public void GameOver()
     {
-        //AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
         BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
 
+        // Reset static fields
+        Wagon.upgradespeed = 1f;
     }
 
 }
