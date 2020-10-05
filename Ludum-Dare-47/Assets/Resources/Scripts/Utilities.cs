@@ -18,4 +18,31 @@ public class Utilities
             return Vector2.zero;
     }
 
+    public static float DirToAngle(Direction dir)
+    {
+        if (dir == Direction.UP)
+            return 180f;
+        else if (dir == Direction.DOWN)
+            return 0f;
+        else if (dir == Direction.LEFT)
+            return 270f;
+        else if (dir == Direction.RIGHT)
+            return 90f;
+        else
+            return -1;
+    }
+
+    public static float VecToAngle(Vector2 dir)
+    {
+        if (dir == Vector2.up)
+            return 180f;
+        else if (dir == Vector2.down)
+            return 0f;
+        else if (dir == Vector2.left)
+            return 270f;
+        else if (dir == Vector2.right)
+            return 90f;
+        else
+            return -1f;
+    }
 }

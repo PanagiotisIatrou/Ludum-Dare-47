@@ -6,13 +6,22 @@ public class TrainMovement : MonoBehaviour
 {
     public Transform VertexHolder;
     private Wagon wagon;
-    private Direction currentDir = Direction.NONE;
+    public Direction currentDir = Direction.NONE;
+    private Direction prevDir = Direction.NONE;
     private Direction nextDir = Direction.NONE;
     private bool stopped = true;
 
     private Boost Boost;
     private TrainPickUpDrop pickupdrop;
-    
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Wagon") && col.gameObject != wagon.previousWagon.previousWagon.gameObject)
+        {
+            BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 0.5f);
+        }
+    }
+
     private void Start()
     {
         wagon = GetComponent<Wagon>();

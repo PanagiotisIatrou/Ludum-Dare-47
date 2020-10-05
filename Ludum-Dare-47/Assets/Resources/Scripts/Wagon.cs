@@ -8,6 +8,8 @@ public class Wagon : MonoBehaviour
     public Wagon previousWagon = null;
     public Vertex currentVertex;
     private TrainPickUpDrop pickUp;
+    private TrainMovement trainMovement;
+    private Direction currentDir = Direction.DOWN;
     public bool isMoving = false;
     private float speed = 3f;
     public static float upgradespeed = 1f;
@@ -18,6 +20,7 @@ public class Wagon : MonoBehaviour
         if (isFirst)
         {
             pickUp = GetComponent<TrainPickUpDrop>();
+            trainMovement = GetComponent<TrainMovement>();
         }
     }
 
@@ -41,6 +44,7 @@ public class Wagon : MonoBehaviour
         isMoving = true;
         Vector2 newPos = newVertex.transform.position;
         Vector2 offset = newPos - (Vector2)transform.position;
+        transform.eulerAngles = new Vector3(0f, 0f, Utilities.VecToAngle(offset));
         float dist = -1;
         float prevDist;
         while ((Vector2)transform.position != newPos)
