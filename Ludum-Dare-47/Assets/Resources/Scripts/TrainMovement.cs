@@ -18,7 +18,6 @@ public class TrainMovement : MonoBehaviour
         wagon = GetComponent<Wagon>();
         pickupdrop = GetComponent<TrainPickUpDrop>();
         Boost = GetComponent<Boost>();
-        wagon.currentVertex = VertexHolder.GetChild(0).GetComponent<Vertex>();
 
         // Set up vertex neighbours
         for (int i = 0; i < VertexHolder.childCount; i++)
