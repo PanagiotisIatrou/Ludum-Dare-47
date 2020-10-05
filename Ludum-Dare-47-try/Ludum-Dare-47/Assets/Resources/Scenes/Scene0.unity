@@ -7434,7 +7434,7 @@ MonoBehaviour:
   downVert: {fileID: 0}
   leftVert: {fileID: 0}
   rightVert: {fileID: 0}
-  wanringclip: {fileID: 0}
+  wanringclip: {fileID: 8300000, guid: 8163979bede3113459044bb89fdcd0e4, type: 3}
   Flage: 1
   spriteArray:
   - {fileID: 21300000, guid: 3d1084b0b96707e4ea54eebaae324a99, type: 3}
