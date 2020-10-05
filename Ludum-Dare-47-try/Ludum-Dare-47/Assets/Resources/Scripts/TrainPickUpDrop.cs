@@ -48,7 +48,7 @@ public class TrainPickUpDrop : MonoBehaviour
         if(time<max && dropoffflage == true)
         {
             dropoff.Stop();
-            dropoffflage = false;
+            dropoffflage = false;   
         }
     }
 

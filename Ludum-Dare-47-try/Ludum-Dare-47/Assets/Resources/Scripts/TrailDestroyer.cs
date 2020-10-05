@@ -203,7 +203,7 @@ public class TrailDestroyer : MonoBehaviour
    
     public void GameOver()
     {
-
+        //AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
         BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
 
     }
