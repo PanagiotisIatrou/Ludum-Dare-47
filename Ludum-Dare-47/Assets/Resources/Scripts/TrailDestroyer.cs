@@ -186,4 +186,11 @@ public class TrailDestroyer : MonoBehaviour
 
     }
    
+    public void GameOver()
+    {
+
+        BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
+
+    }
+
 }

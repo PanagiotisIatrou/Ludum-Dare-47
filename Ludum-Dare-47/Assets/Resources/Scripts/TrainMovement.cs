@@ -18,7 +18,7 @@ public class TrainMovement : MonoBehaviour
     {
         if (col.CompareTag("Wagon") && col.gameObject != wagon.previousWagon.previousWagon.gameObject)
         {
-            BlackFader.GoToScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single, 0.5f);
+            TrailDestroyer.Instance.GameOver();
         }
     }
 
