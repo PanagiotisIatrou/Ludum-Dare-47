@@ -55,22 +55,22 @@ public class Factory : MonoBehaviour
         if (temp == 0)
         {
             num_items.Enqueue(0);
-            temp2 = blue;
+            temp2 = blue;   //Wood
         }
         else if (temp == 1)
         {
             num_items.Enqueue(1);
-            temp2 = red;
+            temp2 = red;    //Bread
         }
         else if (temp == 2)
         {
             num_items.Enqueue(2);
-            temp2 = green;
+            temp2 = green;  //Stone
         }
         else
         {
             num_items.Enqueue(3);
-            temp2 = yellow;
+            temp2 = yellow; //Iron
         }
         GameObject item = Instantiate(temp2, transform.position, Quaternion.identity);
         if (items.Count == 0)

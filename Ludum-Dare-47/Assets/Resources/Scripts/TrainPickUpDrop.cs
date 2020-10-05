@@ -24,7 +24,7 @@ public class TrainPickUpDrop : MonoBehaviour
     private TrainMovement trainMovement;
     private int sizeofcargo;
     private int balance;
-    List<int> inventory;
+    private static List<int> inventory;
     private bool isResupplying = false;
 
     private void Start()
@@ -53,8 +53,11 @@ public class TrainPickUpDrop : MonoBehaviour
             {
                 if (Factory.isEmpty())
                     break;
-                inventory.Add(Factory.Remove(1)[0]);
+                int j = Factory.Remove(1)[0];
+                inventory.Add(j);
+                ListOfItmes.Instance.item[j] ++;
             }
+            ListOfItmes.Instance.Check();
         }
         // Check if train is in any city
         //blue
@@ -66,16 +69,19 @@ public class TrainPickUpDrop : MonoBehaviour
         else if ((Vector2)transform.position == new Vector2(4, 4))
         {
             remove(1);
+
         }
         //green
         else if ((Vector2)transform.position == new Vector2(-4, -4))
         {
             remove(2);
+
         }
         //yellow
         else if ((Vector2)transform.position == new Vector2(4, -4))
         {
             remove(3);
+
         }
         else if ((Vector2)transform.position == new Vector2(0, 2) && !TrailDestroyer.Instance.upVert.state)
         {
@@ -100,6 +106,7 @@ public class TrainPickUpDrop : MonoBehaviour
     private void remove(int what)
     {
         listremove(what);
+        ListOfItmes.Instance.Check();
         if (flage)
         {
             balance++;
@@ -127,6 +134,7 @@ public class TrainPickUpDrop : MonoBehaviour
             {
                 ScoreMoneyManager.AddScore(1);
                 inventory.RemoveAt(i);
+                ListOfItmes.Instance.item[what]--;
                 listremove(what);
                 flage = true;
                 break;
@@ -170,5 +178,13 @@ public class TrainPickUpDrop : MonoBehaviour
         Wagon newWagon = newGO.GetComponent<Wagon>();
         newWagon.frontWagon = lastWagon;
         lastWagon.previousWagon = newWagon;
+    }
+    public static List<int> WhatItemsinInventory()
+    {
+        return inventory;
+    }
+    public static int HowManyItems()
+    {
+        return inventory.Count;
     }
 }
