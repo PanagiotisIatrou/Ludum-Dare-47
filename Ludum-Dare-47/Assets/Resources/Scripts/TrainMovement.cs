@@ -67,6 +67,7 @@ public class TrainMovement : MonoBehaviour
     private void GoToDir(Direction dir)
     {
         bool found = false;
+        prevDir = currentDir;
         // Search for nextDir
         for (int i = 0; i < wagon.currentVertex.neighbours.Count; i++)
         {
@@ -112,28 +113,40 @@ public class TrainMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             if (stopped)
-                currentDir = Direction.UP;
+            {
+                if (prevDir != Direction.DOWN)
+                    currentDir = Direction.UP;
+            }
             else
                 nextDir = Direction.UP;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             if (stopped)
-                currentDir = Direction.DOWN;
+            {
+                if (prevDir != Direction.UP)
+                    currentDir = Direction.DOWN;
+            }
             else
                 nextDir = Direction.DOWN;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (stopped)
-                currentDir = Direction.LEFT;
+            {
+                if (prevDir != Direction.RIGHT)
+                    currentDir = Direction.LEFT;
+            }
             else
                 nextDir = Direction.LEFT;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             if (stopped)
-                currentDir = Direction.RIGHT;
+            {
+                if (prevDir != Direction.LEFT)
+                    currentDir = Direction.RIGHT;
+            }
             else
                 nextDir = Direction.RIGHT;
         }
