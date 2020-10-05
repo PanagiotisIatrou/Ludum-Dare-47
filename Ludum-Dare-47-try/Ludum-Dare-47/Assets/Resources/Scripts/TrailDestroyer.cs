@@ -27,6 +27,7 @@ public class TrailDestroyer : MonoBehaviour
     public Vertex downVert;
     public Vertex leftVert;
     public Vertex rightVert;
+    public  AudioClip wanringclip;
 
     private Vertex destroyedTrail = null;
     
@@ -131,7 +132,7 @@ public class TrailDestroyer : MonoBehaviour
                     
                     
                 item = Instantiate(Instance.prefab, Instance.upVert.transform.position, Quaternion.identity);
-
+                AudioSource.PlayClipAtPoint(Instance.wanringclip, Vector3.zero, 4f);
                 yield return  new WaitForSeconds(4);
 
                 Destroy(item);

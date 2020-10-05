@@ -27,6 +27,8 @@ public class TrainPickUpDrop : MonoBehaviour
     private static List<int> inventory;
     private bool isResupplying = false;
 
+    public AudioClip pickup;
+
     private void Start()
     {
         wagon = GetComponent<Wagon>();
@@ -52,6 +54,7 @@ public class TrainPickUpDrop : MonoBehaviour
                 ListOfItmes.Instance.item[j] ++;
             }
             ListOfItmes.Instance.Check();
+            AudioSource.PlayClipAtPoint(pickup, Vector3.zero, 1f);
         }
         // Check if train is in any city
         //blue
@@ -99,6 +102,7 @@ public class TrainPickUpDrop : MonoBehaviour
 
     private void remove(int what)
     {
+        AudioSource.PlayClipAtPoint(pickup, Vector3.zero, 1f);
         listremove(what);
         ListOfItmes.Instance.Check();
         if (flage)

@@ -11,14 +11,20 @@ public class Factory : MonoBehaviour
     private float time = 0;
     private static Queue<GameObject> items = new Queue<GameObject>(max_items);
     private static Queue<int> num_items = new Queue<int>(max_items);
+    private bool flagewanring;
+    public GameObject warningpref;
     public GameObject blue;
     public GameObject red;
     public GameObject green;
     public GameObject yellow;
+    private GameObject warning;
+    public AudioSource warnignsound;
 
     private void Awake()
     {
+        flagewanring = false;
         AddItem();
+        
     }
 
     void Update()
@@ -75,23 +81,35 @@ public class Factory : MonoBehaviour
         GameObject item = Instantiate(temp2, transform.position, Quaternion.identity);
         if (items.Count == 0)
         {
-            item.transform.position = new Vector3(0.12f, 0.5f, 0);
+            item.transform.position = new Vector3(-0.4083648f, 0.4594103f, 0);
         }
         else if (items.Count == 1)
         {
-            item.transform.position = new Vector3(0.52f, 0.5f, 0);
+            item.transform.position = new Vector3(0.4083648f, 0.4594103f, 0);
         }
         else if (items.Count == 2)
         {
-            item.transform.position = new Vector3(0.12f, 0.072f, 0);
+            item.transform.position = new Vector3(-0.4083648f, -0.394103f, 0);
         }
         else
         {
-            item.transform.position = new Vector3(0.52f, 0.072f, 0);
+            item.transform.position = new Vector3(0.4083648f, -0.394103f, 0);
         }
         
         items.Enqueue(item);
-        
+        if (flagewanring && items.Count != 4)
+        {
+            Destroy(warning);
+            flagewanring = false;
+            warnignsound.Stop();
+        }
+        if (items.Count == 4)
+        {
+            flagewanring = true;
+            warnignsound.Play();
+            warning = Instantiate(warningpref, new Vector3(0.0453741f, 0.1417933f, 0), Quaternion.identity);
+        }
+
     }
     
     public static List<int> Remove(int size)
@@ -115,15 +133,15 @@ public class Factory : MonoBehaviour
             GameObject item = items.Dequeue();
             if (j == 0)
             {
-                item.transform.position = new Vector3(0.12f, 0.5f, 0);
+                item.transform.position = new Vector3(-0.4083648f, 0.4594103f, 0);
             }
             else if (j == 1)
             {
-                item.transform.position = new Vector3(0.52f, 0.5f, 0);
+                item.transform.position = new Vector3(0.4083648f, 0.4594103f, 0);
             }
             else
             {
-                item.transform.position = new Vector3(0.12f, 0.072f, 0);
+                item.transform.position = new Vector3(-0.4083648f, -0.4594103f, 0);
             }
             temp_queue.Enqueue(item);
         }

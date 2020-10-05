@@ -8,6 +8,7 @@ public class Boost : MonoBehaviour
     private float time;
     private float boosttime;
     private bool flage;
+    public AudioClip boostclip;
     private void Start()
     {
         boost = false;
@@ -19,6 +20,7 @@ public class Boost : MonoBehaviour
         time += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space)&& time >2 && flage)
         {
+            AudioSource.PlayClipAtPoint(boostclip, Vector3.zero, 1f);
             time = 0;
             boost = true;
             boosttime = 0;
