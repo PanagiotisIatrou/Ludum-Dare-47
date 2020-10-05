@@ -10,6 +10,11 @@ public class Buttons : MonoBehaviour
         BlackFader.GoToScene("Scene0", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
 
     }
+    public void OnHelp2ButtonListener()
+    {
+        BlackFader.GoToScene("Help2", UnityEngine.SceneManagement.LoadSceneMode.Single, 1f);
+
+    }
 
     public void OnCreditsButtonListener()
     {
