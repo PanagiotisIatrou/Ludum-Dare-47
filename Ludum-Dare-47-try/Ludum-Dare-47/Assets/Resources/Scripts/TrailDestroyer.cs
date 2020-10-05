@@ -27,7 +27,9 @@ public class TrailDestroyer : MonoBehaviour
     public Vertex downVert;
     public Vertex leftVert;
     public Vertex rightVert;
-    public  AudioClip wanringclip;
+
+    public AudioSource warning;
+    public AudioClip explotion;
 
     private Vertex destroyedTrail = null;
     
@@ -129,55 +131,58 @@ public class TrailDestroyer : MonoBehaviour
             Instance.destroyedIndex = r;
             if (r == 0)
             {
-                    
-                    
+
+                Instance.warning.Play();   
                 item = Instantiate(Instance.prefab, Instance.upVert.transform.position, Quaternion.identity);
-                AudioSource.PlayClipAtPoint(Instance.wanringclip, Vector3.zero, 4f);
                 yield return  new WaitForSeconds(4);
+                Instance.warning.Stop();
 
                 Destroy(item);
-
+                AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.upVert;
                 Instance.spriteRenderer[0].sprite = Instance.spriteArray[1];
             }
 
             else if (r == 1)
             {
-
+                Instance.warning.Play();
                 item = Instantiate(Instance.prefab, Instance.downVert.transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(4);
+                Instance.warning.Stop();
 
                 Destroy(item);
-
+                AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.downVert;
                 Instance.spriteRenderer[1].sprite = Instance.spriteArray[1];
             }
 
             else if (r == 2)
             {
-                    
+                Instance.warning.Play();
                 item = Instantiate(Instance.prefab, Instance.leftVert.transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(4);
+                Instance.warning.Stop();
 
                 Destroy(item);
 
                 Instance.destroyedTrail = Instance.leftVert;
                 Instance.spriteRenderer[2].sprite = Instance.spriteArray[1];
-
+                AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
             }
 
             else if (r == 3)
             {
-
+                Instance.warning.Play();
                 item = Instantiate(Instance.prefab, Instance.rightVert.transform.position, Quaternion.identity);
 
                 yield return  new WaitForSeconds(4);
+                Instance.warning.Stop();
 
                 Destroy(item);
 
-
+                AudioSource.PlayClipAtPoint(Instance.explotion, Vector3.zero, 4f);
                 Instance.destroyedTrail = Instance.rightVert;
                 Instance.spriteRenderer[3].sprite = Instance.spriteArray[1];
             }

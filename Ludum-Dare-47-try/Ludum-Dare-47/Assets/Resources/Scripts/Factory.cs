@@ -24,11 +24,17 @@ public class Factory : MonoBehaviour
     {
         flagewanring = false;
         AddItem();
-        
     }
 
     void Update()
     {
+
+        if (flagewanring && items.Count != 4)
+        {
+            Destroy(warning);
+            flagewanring = false;
+            warnignsound.Stop();
+        }
 
         if (items.Count > max_items)
         {
@@ -97,12 +103,7 @@ public class Factory : MonoBehaviour
         }
         
         items.Enqueue(item);
-        if (flagewanring && items.Count != 4)
-        {
-            Destroy(warning);
-            flagewanring = false;
-            warnignsound.Stop();
-        }
+
         if (items.Count == 4)
         {
             flagewanring = true;
