@@ -167,10 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531768c3688d49c45b742f2b7c61c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blue: {fileID: 3442233412206366566, guid: 4d3271f7c5667fc49bb1a575e95afda9, type: 3}
-  red: {fileID: 250794032632070153, guid: 841c8edcfabc22a4594ed806c008b5e5, type: 3}
-  green: {fileID: 2856872637722766717, guid: 2960ba14ae483214287d7640311b7fa0, type: 3}
-  yellow: {fileID: 7766875996434743455, guid: ebd1104a06f60bb48b70ec40df37b511, type: 3}
+  warningpref: {fileID: 6476021971222940257, guid: d674a98e17774f6498b666bc31781d6d, type: 3}
+  blue: {fileID: 8686484758975535908, guid: d6840e76ce897cc4eb2f8e488e5c73e1, type: 3}
+  red: {fileID: 4515890173644735224, guid: 82c0093cf6edb304bb46ccd2250f9ea9, type: 3}
+  green: {fileID: 923954469494114130, guid: 594ca1907903abe4183347f9fd5dcaf2, type: 3}
+  yellow: {fileID: 6090417367231485380, guid: 9ad33bd1867803d418f13afd938d1821, type: 3}
+  warnignsound: {fileID: 0}
 --- !u!212 &31958841
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7432,6 +7434,7 @@ MonoBehaviour:
   downVert: {fileID: 0}
   leftVert: {fileID: 0}
   rightVert: {fileID: 0}
+  wanringclip: {fileID: 0}
   Flage: 1
   spriteArray:
   - {fileID: 21300000, guid: 3d1084b0b96707e4ea54eebaae324a99, type: 3}
@@ -10142,6 +10145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WagonPrefab: {fileID: 2463460763785217874, guid: c0b61cbcb7e014f4896168295557a3ca, type: 3}
+  pickup: {fileID: 0}
 --- !u!114 &1710079790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10154,6 +10158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e218056fa52b265409512bbbc1e5745b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostclip: {fileID: 0}
 --- !u!114 &1710079791
 MonoBehaviour:
   m_ObjectHideFlags: 0
