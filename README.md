@@ -1,5 +1,7 @@
 # Train Rush
-Submission for Ludum Dare 47 Game Jam
+Submission for Ludum Dare 47 Game Jam.  
+The game was entirely made from scratch in just **3 days**.  
+https://ldjam.com/events/ludum-dare/47/train-rush/
 
 # The team:
 
@@ -10,3 +12,5 @@ Submission for Ludum Dare 47 Game Jam
 - Stella Maladaki [Graphics]
 
 - Apostolos Mexas [Music/SFX]
+
+![](train_rush.gif)
